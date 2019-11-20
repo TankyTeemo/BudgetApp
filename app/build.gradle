@@ -7,6 +7,10 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
+    dataBinding {
+        enabled = true
+    }
+
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.example.android.budgetapp"
@@ -48,6 +52,10 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
 
     //Navigation dependencies
+    def nav_version = "2.1.0"
     implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
+
+    //Databinding dependency
+    kapt 'com.android.databinding:compiler:3.5.0'
 }
