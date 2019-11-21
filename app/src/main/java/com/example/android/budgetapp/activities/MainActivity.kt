@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.android.budgetapp.R
 import kotlinx.android.synthetic.main.activity_main.*
+import com.example.android.budgetapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 //
