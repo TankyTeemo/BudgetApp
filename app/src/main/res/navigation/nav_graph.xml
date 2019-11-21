@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/calendarScreenFragment">
+
+    <fragment
+        android:id="@+id/expenseScreenFragment"
+        android:name="com.example.android.budgetapp.fragments.ExpenseScreenFragment"
+        android:label="fragment_expense_screen"
+        tools:layout="@layout/fragment_expense_screen" >
+        <action
+            android:id="@+id/action_expenseScreenFragment_to_calendarScreenFragment"
+            app:destination="@id/calendarScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/calendarScreenFragment"
+        android:name="com.example.android.budgetapp.fragments.CalendarScreenFragment"
+        android:label="fragment_calendar_screen"
+        tools:layout="@layout/fragment_calendar_screen" >
+        <action
+            android:id="@+id/action_calendarScreenFragment_to_expenseScreenFragment"
+            app:destination="@id/expenseScreenFragment" />
+    </fragment>
+</navigation>
