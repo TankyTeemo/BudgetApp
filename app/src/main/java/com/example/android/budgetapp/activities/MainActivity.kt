@@ -1,27 +1,26 @@
 package com.example.android.budgetapp.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
+import android.widget.Button
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.android.budgetapp.R
-import com.example.android.budgetapp.fragments.PieGraphFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_pie_graph.*
+import com.example.android.budgetapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
+//
+    /**
+     * Called when app is launched
+     * @param savedInstanceState used if orientation is changed otherwise null
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        graph_button.setOnClickListener{
-            val fragment: Fragment = PieGraphFragment.newInstance()
-            val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-
-            transaction.replace(R.id.container, fragment).commit()
-        }
+        val navController = this.findNavController(R.id.myNavHostFragment)
+        NavigationUI.setupActionBarWithNavController(this, navController)
     }
-
-
 }

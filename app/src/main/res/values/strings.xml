@@ -3,6 +3,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_category_header">Add Category</string>
+    <string name="category_name_screen">Category Name</string>
+    <string name="amount">0.00</string>
+    <string name="submit_string">Submit</string>
+    <string name="edit_button_text">Edit</string>
+    <string name="delete_button_text">Delete</string>
+    <string name="back_button_text">Back</string>
     <string name="frag_pie_string">Graph View</string>
     <string name="back_string">Back</string>
 </resources>
