@@ -25,9 +25,15 @@ class CalendarScreenFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val binding: FragmentCalendarScreenBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_calendar_screen, container, false)
+
         binding.expenseScreenButton.setOnClickListener { v: View ->
             v.findNavController().navigate(R.id.action_calendarScreenFragment_to_expenseScreenFragment)
         }
+
+        binding.graphButton.setOnClickListener( {v: View ->
+            v.findNavController().navigate((R.id.action_calendarScreenFragment_to_pieGraphFragment))
+        })
+
         return binding.root
     }
 
