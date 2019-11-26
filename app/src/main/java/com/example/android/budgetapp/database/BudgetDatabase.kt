@@ -2,6 +2,7 @@ package com.example.android.budgetapp.database
 
 import android.content.Context
 import androidx.room.*
+import com.example.android.budgetapp.database.daos.BudgetDao
 import com.example.android.budgetapp.database.daos.CategoryDao
 import com.example.android.budgetapp.database.daos.ExpenditureDao
 import com.example.android.budgetapp.database.entities.Budget
@@ -14,6 +15,7 @@ import com.example.android.budgetapp.database.entities.Expenditure
 
     abstract val expenditureDao: ExpenditureDao
     abstract val categoryDao: CategoryDao
+    abstract val budgetDao: BudgetDao
 
     companion object{
         @Volatile
