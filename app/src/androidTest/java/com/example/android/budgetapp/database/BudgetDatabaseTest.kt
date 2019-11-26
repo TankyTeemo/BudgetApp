@@ -3,6 +3,7 @@ package com.example.android.budgetapp.database
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.example.android.budgetapp.database.daos.BudgetDao
 import com.example.android.budgetapp.database.daos.CategoryDao
 import com.example.android.budgetapp.database.daos.ExpenditureDao
 import com.example.android.budgetapp.database.entities.Category
@@ -19,6 +20,7 @@ import java.lang.Exception
 @RunWith(AndroidJUnit4::class)
 class BudgetDatabaseTest {
 
+    private lateinit var budgetDao: BudgetDao
     private lateinit var expenditureDao: ExpenditureDao
     private lateinit var categoryDao: CategoryDao
     private lateinit var db: BudgetDatabase
@@ -34,6 +36,7 @@ class BudgetDatabaseTest {
             .build() // builds the database
         expenditureDao = db.expenditureDao // sets the database table to the global var
         categoryDao = db.categoryDao // sets the database table to the global var
+        budgetDao = db.budgetDao // sets the database table to the global var
     }
 
     @After
