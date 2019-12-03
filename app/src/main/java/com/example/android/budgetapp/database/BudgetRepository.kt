@@ -1,8 +1,10 @@
 package com.example.android.budgetapp.database
 
 import android.app.Application
+import android.content.Context
 import android.os.AsyncTask
 import androidx.lifecycle.LiveData
+import androidx.room.Room
 import com.example.android.budgetapp.database.daos.BudgetDao
 import com.example.android.budgetapp.database.daos.CategoryDao
 import com.example.android.budgetapp.database.daos.ExpenditureDao
@@ -68,6 +70,23 @@ class BudgetRepository(app: Application) {
     class AsyncInsertCategory(private val categoryDao: CategoryDao): AsyncTask<Category, Void, Unit>(){
         override fun doInBackground(vararg category: Category?) {
             categoryDao.insertCategory(*category)
+        }
+    }
+
+    companion object{
+        @Volatile
+        private var INSTANCE: BudgetRepository? = null
+
+        fun getInstance(app: Application): BudgetRepository {
+            synchronized(this){
+                var instance = INSTANCE
+
+                if(instance == null){
+                    instance = BudgetRepository(app)
+                    INSTANCE = instance
+                }
+                return instance
+            }
         }
     }
 
