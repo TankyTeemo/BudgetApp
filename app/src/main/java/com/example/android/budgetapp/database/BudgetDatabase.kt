@@ -40,5 +40,4 @@ import com.example.android.budgetapp.database.entities.Expenditure
             }
         }
     }
-
 }
