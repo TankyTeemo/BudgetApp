@@ -1,5 +1,6 @@
 package com.example.android.budgetapp.database.daos
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.android.budgetapp.database.entities.Expenditure
 
@@ -7,7 +8,7 @@ import com.example.android.budgetapp.database.entities.Expenditure
 interface ExpenditureDao {
 
     @Insert
-    fun insertExpenditure(expenditure: Expenditure)
+    fun insertExpenditure(vararg expenditure: Expenditure?)
 
     @Delete
     fun deleteExpenditure(expenditure: Expenditure)
@@ -23,4 +24,7 @@ interface ExpenditureDao {
 
     @Query("DELETE FROM expenditure")
     fun clear()
+
+    @Query("SELECT * FROM expenditure ORDER BY uid DESC")
+    fun getAllExpenditures(): LiveData<List<Expenditure>>
 }
