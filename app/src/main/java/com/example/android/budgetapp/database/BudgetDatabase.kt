@@ -7,10 +7,13 @@ import com.example.android.budgetapp.database.daos.CategoryDao
 import com.example.android.budgetapp.database.daos.ExpenditureDao
 import com.example.android.budgetapp.database.entities.Budget
 import com.example.android.budgetapp.database.entities.Category
+import com.example.android.budgetapp.database.entities.DateConverter
 import com.example.android.budgetapp.database.entities.Expenditure
 
 @Database(entities = [Category::class,Expenditure::class, Budget::class],
     version = 1, exportSchema = true)
+    // converters being used
+    @TypeConverters(DateConverter::class)
     abstract class BudgetDatabase: RoomDatabase() {
 
     abstract val expenditureDao: ExpenditureDao
