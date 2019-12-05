@@ -2,8 +2,8 @@ package com.example.android.budgetapp.database.entities
 
 import androidx.room.*
 import androidx.room.ForeignKey.CASCADE
-import java.sql.Date
-import java.sql.Timestamp
+import java.time.Instant
+import java.util.*
 
 @Entity(foreignKeys = arrayOf(
     ForeignKey(
@@ -18,7 +18,7 @@ data class Expenditure (
     @ColumnInfo(name = "category_uid")
     val category_uid: Long,
     @ColumnInfo
-    val date: String?,
+    val date: Date?,
     @ColumnInfo
     val price: Double,
     @ColumnInfo

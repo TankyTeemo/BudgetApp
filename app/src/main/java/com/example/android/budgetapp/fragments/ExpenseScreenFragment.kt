@@ -40,7 +40,7 @@ class ExpenseScreenFragment : Fragment() {
 
         arrayList = arrayListOf<String>()
 
-        binding.submitButton.setOnClickListener( {
+        binding.submitButton.setOnClickListener {
             var categoryName = binding.catagoryName.text
             var categoryAmount = binding.categoryAmount.text
             if (!categoryName.matches("".toRegex()) && !categoryAmount.matches("".toRegex())) {
@@ -50,7 +50,7 @@ class ExpenseScreenFragment : Fragment() {
                     binding.categoryList.text = binding.categoryList.text.toString() + "\n" + arrayList!![i]
                 }
             }
-        })
+        }
 
         return binding.root
     }

@@ -20,7 +20,7 @@ interface ExpenditureDao {
     fun getExpenditure(key: Long): Expenditure?
 
     @Query("SELECT * FROM expenditure WHERE category_uid = :categoryKey")
-    fun findExpendituresForCategory(categoryKey: Long): List<Expenditure>?
+    fun findExpendituresForCategory(categoryKey: Long): LiveData<List<Expenditure>>?
 
     @Query("DELETE FROM expenditure")
     fun clear()

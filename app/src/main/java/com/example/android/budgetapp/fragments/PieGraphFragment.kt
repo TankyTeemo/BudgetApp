@@ -24,7 +24,7 @@ import com.github.mikephil.charting.formatter.PercentFormatter
  */
 class PieGraphFragment : Fragment() {
 
-    val expenditureString:Array<String?> = arrayOf("Food", "Rent", "Other")
+    val expenditureString:Array<String> = arrayOf("Food", "Rent", "Other")
     val floatValues = arrayOf(22.2f, 50.2f, 12.0f)
 
     override fun onCreateView(
@@ -35,7 +35,7 @@ class PieGraphFragment : Fragment() {
         val binding: FragmentPieGraphBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pie_graph, container, false)
 
-        setupPieChart(binding)
+        setupPieChart(binding, expenditureString)
 
         binding.backButton.setOnClickListener { v: View ->
             v.findNavController().navigate((R.id.action_pieGraphFragment_to_calendarScreenFragment))
@@ -47,12 +47,12 @@ class PieGraphFragment : Fragment() {
     /**
      * function to setup up the pie chart with the data
      */
-    private fun setupPieChart(binding: FragmentPieGraphBinding) {
+    private fun setupPieChart(binding: FragmentPieGraphBinding, entries :Array<String>) {
 
         val pieEntries = ArrayList<PieEntry>(0)
 
         for (i in 0 until floatValues.size){
-            val myEntry = PieEntry(floatValues[i], "expenditureString[i]")
+            val myEntry = PieEntry(floatValues[i], entries[i])
 
             pieEntries.add(myEntry)
 
