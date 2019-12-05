@@ -32,13 +32,26 @@ class ExpenseScreenFragment : Fragment() {
         val binding: FragmentExpenseScreenBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_expense_screen, container, false)
 
-        //databaseHelper = BudgetRepository()
+        categories = binding.addCategoryHeader
 
-        //var arraylist = databaseHelper!!.categoryDao.getAllCategories()
+        databaseHelper = BudgetRepository.getInstance(activity!!.application)
 
-        binding.backButton.setOnClickListener { v: View ->
-            v.findNavController().navigate(R.id.action_expenseScreenFragment_to_calendarScreenFragment)
-        }
+        //arrayList = listOf(databaseHelper!!.getCategories())
+
+        arrayList = arrayListOf<String>()
+
+        binding.submitButton.setOnClickListener( {
+            var categoryName = binding.catagoryName.text
+            var categoryAmount = binding.categoryAmount.text
+            if (!categoryName.matches("".toRegex()) && !categoryAmount.matches("".toRegex())) {
+                arrayList!!.add((categoryName.toString() + " $" + categoryAmount.toString() + "\n"))
+                binding.categoryList.text = ""
+                for (i in arrayList!!.indices) {
+                    binding.categoryList.text = binding.categoryList.text.toString() + "\n" + arrayList!![i]
+                }
+            }
+        })
+
         return binding.root
     }
 
