@@ -32,4 +32,8 @@ class BudgetViewModel(app: Application): AndroidViewModel(app) {
     fun insertCategory(cat: Category){
         repository.insertCategory(cat)
     }
+
+    fun insertExpenditure(exp: Expenditure){
+        repository.insertExpenditure(exp)
+    }
 }

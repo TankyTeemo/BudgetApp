@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -41,6 +42,7 @@ class ExpenseScreenFragment : Fragment() {
 
         var catID = 0;
 
+        (activity as AppCompatActivity).supportActionBar?.title = "Manage Categories"
 
 
         viewModel = ViewModelProviders.of(this).get(BudgetViewModel::class.java)
@@ -58,7 +60,7 @@ class ExpenseScreenFragment : Fragment() {
             override fun onChanged(t: List<Category>?) {
                 if(t!=null){
                     adapter.setCategories(t)
-                    catID = viewModel.getCategories().value?.size ?: 0
+                        catID = viewModel.getCategories().value?.size ?: 0
                 }
             }
         })

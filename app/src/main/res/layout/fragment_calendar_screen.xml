@@ -12,17 +12,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <CalendarView
+        <com.github.sundeepk.compactcalendarview.CompactCalendarView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/calendarView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="400dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_height="300dp"
             android:layout_marginTop="32dp"
+            app:compactCalendarTargetHeight="250dp"
+            app:compactCalendarTextSize="12sp"
+            app:compactCalendarBackgroundColor="#e5e5e5"
+            app:compactCalendarTextColor="#000"
+            app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
+            app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
+            app:compactCalendarMultiEventIndicatorColor="#fff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.475"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
+
 
         <Button
             android:id="@+id/graph_button"
@@ -101,14 +112,16 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <EditText
-                android:id="@+id/category_amount2"
+                android:imeOptions="actionDone"
+                android:selectAllOnFocus="true"
+                android:id="@+id/expense_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:width="@dimen/amount_width"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:text="@string/amount"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -118,19 +131,21 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <EditText
-                android:id="@+id/category_amount3"
+                android:id="@+id/expense_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
-                android:width="@dimen/amount_width"
+                android:width="@android:dimen/thumbnail_width"
                 android:ems="10"
+                android:imeOptions="actionDone"
                 android:inputType="textPersonName"
+                android:selectAllOnFocus="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/textView3"
-                app:layout_constraintTop_toBottomOf="@+id/category_amount2"
+                app:layout_constraintTop_toBottomOf="@+id/expense_amount"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
@@ -148,14 +163,14 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/add_expense_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add Expense"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/category_amount3" />
+                app:layout_constraintTop_toBottomOf="@+id/expense_description" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
