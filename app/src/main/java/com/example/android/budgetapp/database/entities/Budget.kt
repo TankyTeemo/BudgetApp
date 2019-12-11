@@ -18,5 +18,5 @@ data class Budget(
     @ColumnInfo
     val amount: Double,
     @ColumnInfo
-    val date: String
+    val date: Date?
 )

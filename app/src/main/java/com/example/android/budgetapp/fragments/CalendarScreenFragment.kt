@@ -30,9 +30,9 @@ class CalendarScreenFragment : Fragment() {
             v.findNavController().navigate(R.id.action_calendarScreenFragment_to_expenseScreenFragment)
         }
 
-        binding.graphButton.setOnClickListener( {v: View ->
+        binding.graphButton.setOnClickListener { v: View ->
             v.findNavController().navigate((R.id.action_calendarScreenFragment_to_pieGraphFragment))
-        })
+        }
 
         return binding.root
     }

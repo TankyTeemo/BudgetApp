@@ -23,4 +23,7 @@ interface CategoryDao {
 
     @Query("SELECT * FROM category")
     fun getAllCategories(): LiveData<List<Category>>
+
+    @Query("SELECT * FROM category WHERE active = :key")
+    fun getAllActiveCategories(key: Boolean = true): LiveData<List<Category>>
 }
