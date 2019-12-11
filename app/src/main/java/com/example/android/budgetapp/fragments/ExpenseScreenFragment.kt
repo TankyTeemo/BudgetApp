@@ -8,12 +8,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.android.budgetapp.R
 import com.example.android.budgetapp.database.BudgetDatabase
 import com.example.android.budgetapp.database.BudgetRepository
+import com.example.android.budgetapp.database.BudgetViewModel
 import com.example.android.budgetapp.database.daos.CategoryDao
 import com.example.android.budgetapp.database.entities.Category
 import com.example.android.budgetapp.databinding.FragmentExpenseScreenBinding
@@ -21,9 +27,8 @@ import com.example.android.budgetapp.databinding.FragmentExpenseScreenBinding
 
 class ExpenseScreenFragment : Fragment() {
 
-    private var databaseHelper: BudgetRepository? = null
-    private var categories: TextView? = null
-    private var arrayList: ArrayList<String>? = null
+    private lateinit var viewModel: BudgetViewModel
+    private lateinit var recyclerLayout: RecyclerView.LayoutManager
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -32,27 +37,96 @@ class ExpenseScreenFragment : Fragment() {
         val binding: FragmentExpenseScreenBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_expense_screen, container, false)
 
-        categories = binding.addCategoryHeader
+        var recyclerAdapter: CategoriesAdapter = CategoriesAdapter()
 
-        databaseHelper = BudgetRepository.getInstance(activity!!.application)
+        var catID = 0;
 
-        //arrayList = listOf(databaseHelper!!.getCategories())
 
-        arrayList = arrayListOf<String>()
 
-        binding.submitButton.setOnClickListener( {
-            var categoryName = binding.catagoryName.text
-            var categoryAmount = binding.categoryAmount.text
-            if (!categoryName.matches("".toRegex()) && !categoryAmount.matches("".toRegex())) {
-                arrayList!!.add((categoryName.toString() + " $" + categoryAmount.toString() + "\n"))
-                binding.categoryList.text = ""
-                for (i in arrayList!!.indices) {
-                    binding.categoryList.text = binding.categoryList.text.toString() + "\n" + arrayList!![i]
+        viewModel = ViewModelProviders.of(this).get(BudgetViewModel::class.java)
+
+        recyclerLayout = LinearLayoutManager(context)
+
+        binding.expenseRecyclerView.apply{
+            setHasFixedSize(true)
+            layoutManager = recyclerLayout
+            adapter = recyclerAdapter
+        }
+
+        viewModel.getCategories().observe(this,object: Observer<List<Category>> {
+            private val adapter = recyclerAdapter
+            override fun onChanged(t: List<Category>?) {
+                if(t!=null){
+                    adapter.setCategories(t)
+                    catID = viewModel.getCategories().value?.size ?: 0
                 }
             }
         })
 
+        //Adds categories to database
+        binding.submitButton.setOnClickListener {
+            var categoryName = binding.catagoryName.text.toString()
+            var categoryAmount = binding.categoryAmount.text.toString().toInt()
+            if (!categoryName.matches("".toRegex()) && categoryAmount != null) {
+                viewModel.insertCategory(Category(catID.toLong(), true, categoryName, categoryAmount))
+            }
+
+            view?.hideKeyboard()
+        }
+
         return binding.root
     }
 
+
+    fun View.hideKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
+    }
+
+
 }
+
+////databaseHelper!!.insertCategory(Category(uid = 4949,active = true,title = "Test",type = 0))
+////categories = databaseHelper!!.getCategories().value
+////binding.addCategoryHeader.text = databaseHelper!!.getCategories().
+//
+////binding.categoryList.text = testList!![0].title.toString()
+////error(testList?.size.toString())
+//
+////arrayList = arrayListOf<String>()
+//
+////Test Code
+//val testCategories: ArrayList<Category> = ArrayList()
+//
+//val tempBills = Category(0, true, "Bills", 350)
+//val tempFood = Category(1, true, "Food", 130)
+//val tempCandles = Category(2, true, "Candles", 2000)
+//val tempGas = Category(3, true, "Gas", 100)
+//val tempMedicine = Category(3, true, "Medicine", 20)
+//val tempAlsoCandles = Category(4, true, "Also Candles", 2000)
+//val tempMoreCandles = Category(5, true, "More Candles", 2000)
+//val tempMoreCandles2 = Category(6, true, "Even More Candles", 2000)
+//
+//testCategories.add(tempBills)
+//testCategories.add(tempFood)
+//testCategories.add(tempCandles)
+//testCategories.add(tempGas)
+//testCategories.add(tempMedicine)
+//testCategories.add(tempMoreCandles)
+//testCategories.add(tempMoreCandles2)
+//testCategories.add(tempAlsoCandles)
+////End Test Code
+//
+//binding.expenseRecyclerView.layoutManager = LinearLayoutManager(this.context)
+//binding.expenseRecyclerView.adapter = CategoriesAdapter()
+//
+////        binding.submitButton.setOnClickListener {
+////            var categoryName = binding.catagoryName.text.toString()
+////            var categoryAmount = binding.categoryAmount.text.toString().toInt()
+////            if (!categoryName.matches("".toRegex()) && categoryAmount != null) {
+////                testCategories.add(Category(0, true, categoryName, categoryAmount))
+////                binding.expenseRecyclerView.adapter = CategoriesAdapter(testCategories)
+////            }
+////
+////            view?.hideKeyboard()
+////        }

@@ -21,6 +21,6 @@ interface CategoryDao {
     @Query("DELETE FROM category")
     fun clear()
 
-    @Query("SELECT * FROM category ORDER BY uid DESC")
+    @Query("SELECT * FROM category")
     fun getAllCategories(): LiveData<List<Category>>
 }

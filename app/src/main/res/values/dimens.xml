@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="amount_width">60dp</dimen>
-    <dimen name="scrollview_height">400dp</dimen>
+    <dimen name="scrollview_height">600dp</dimen>
 </resources>

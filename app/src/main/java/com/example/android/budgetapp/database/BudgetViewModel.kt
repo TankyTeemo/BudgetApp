@@ -1,12 +1,13 @@
 package com.example.android.budgetapp.database
 
 import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.example.android.budgetapp.database.entities.Budget
 import com.example.android.budgetapp.database.entities.Category
 import com.example.android.budgetapp.database.entities.Expenditure
 
-class BudgetViewModel(app: Application) {
+class BudgetViewModel(app: Application): AndroidViewModel(app) {
     private val repository: BudgetRepository
             = BudgetRepository(app)
     private val categories: LiveData<List<Category>>
@@ -26,5 +27,9 @@ class BudgetViewModel(app: Application) {
     
     fun getExpenditures(): LiveData<List<Expenditure>>{
         return expenditures
+    }
+
+    fun insertCategory(cat: Category){
+        repository.insertCategory(cat)
     }
 }
