@@ -58,7 +58,7 @@ class ExpenseScreenFragment : Fragment() {
             adapter = recyclerAdapter
         }
 
-        viewModel.getCategories().observe(this,object: Obserdver<List<Category>> {
+        viewModel.getCategories().observe(this,object: Observer<List<Category>> {
             private val adapter = recyclerAdapter
             override fun onChanged(t: List<Category>?) {
                 if(t!=null){
