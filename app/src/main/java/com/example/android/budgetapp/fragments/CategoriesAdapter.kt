@@ -1,5 +1,6 @@
 package com.example.android.budgetapp.fragments
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,16 +12,30 @@ import com.example.android.budgetapp.R
 import com.example.android.budgetapp.database.BudgetRepository
 import com.example.android.budgetapp.database.BudgetViewModel
 import com.example.android.budgetapp.database.entities.Category
+import com.example.android.budgetapp.fragments.CategoriesAdapter.AdapterCallback
+
+
+
+
+
+
+
+
+
 
 class CategoriesAdapter(): RecyclerView.Adapter<CategoriesAdapter.CatHolder>() {
+
+    var catID = 0.toLong()
+
+    private var mAdapterCallback: AdapterCallback? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatHolder {
         val view = (LayoutInflater.from(parent.context)
             .inflate(R.layout.categories_row,parent, false))
 
+
         return CatHolder(view)
     }
-
 
 
     private var categories:
@@ -65,7 +80,8 @@ class CategoriesAdapter(): RecyclerView.Adapter<CategoriesAdapter.CatHolder>() {
         }
 
         deleteButton.setOnClickListener {
-            //categories?.get(position)?.active = false
+            mAdapterCallback?.onMethodCallback(categories?.get(position)!!);
+
         }
 
         //holder.category_and_amount.text = categories[position].title.toString() + " $" + categories[position].type.toString()
@@ -73,6 +89,10 @@ class CategoriesAdapter(): RecyclerView.Adapter<CategoriesAdapter.CatHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val category_and_amount: TextView = itemView.findViewById(R.id.category_text)
+    }
+
+    interface AdapterCallback {
+        fun onMethodCallback(catID: Category)
     }
 
 }

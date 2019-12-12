@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_calendar_screen.*
 import android.graphics.Color
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -31,6 +32,7 @@ import java.util.*
 class CalendarScreenFragment : Fragment() {
 
     private lateinit var viewModel: BudgetViewModel
+    private  lateinit var  spinner: Spinner
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -43,6 +45,7 @@ class CalendarScreenFragment : Fragment() {
 
         var expID = 0;
         var catAmount = 0;
+        spinner = binding.spinner
 
         viewModel.getExpenditures().observe(this,object: Observer<List<Expenditure>> {
             override fun onChanged(t: List<Expenditure>?) {
@@ -59,6 +62,8 @@ class CalendarScreenFragment : Fragment() {
                 }
             }
         })
+
+        initData()
 
         //Broken Spinner
 //
@@ -104,6 +109,21 @@ class CalendarScreenFragment : Fragment() {
     fun View.hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
+    }
+
+    private fun initData() {
+        var packageTypesAdapter = ArrayAdapter<Any>(this@CalendarScreenFragment.context!!,
+            android.R.layout.simple_spinner_item)
+
+        viewModel.getCategories().observe(this, Observer { packageTypes ->
+
+            packageTypes?.forEach {
+                packageTypesAdapter.add(it.title)
+            }
+        })
+
+        spinner.adapter = packageTypesAdapter
+
     }
 
 

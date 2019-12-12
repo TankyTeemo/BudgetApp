@@ -27,6 +27,8 @@ import com.example.android.budgetapp.databinding.FragmentExpenseScreenBinding
 import kotlinx.android.synthetic.main.categories_row.view.*
 
 
+
+
 class ExpenseScreenFragment : Fragment() {
 
     private lateinit var viewModel: BudgetViewModel
@@ -56,7 +58,7 @@ class ExpenseScreenFragment : Fragment() {
             adapter = recyclerAdapter
         }
 
-        viewModel.getCategories().observe(this,object: Observer<List<Category>> {
+        viewModel.getCategories().observe(this,object: Obserdver<List<Category>> {
             private val adapter = recyclerAdapter
             override fun onChanged(t: List<Category>?) {
                 if(t!=null){
@@ -68,9 +70,9 @@ class ExpenseScreenFragment : Fragment() {
 
         //Adds categories to database
         binding.submitButton.setOnClickListener {
-            var categoryName = binding.catagoryName.text.toString()
-            var categoryAmount = binding.categoryAmount.text.toString().toInt()
-            if (!categoryName.matches("".toRegex()) && categoryAmount != null) {
+            if (!binding.catagoryName.text.toString().matches("".toRegex()) && !binding.categoryAmount.text.toString().matches("".toRegex())) {
+                var categoryName = binding.catagoryName.text.toString()
+                var categoryAmount = binding.categoryAmount.text.toString().toInt()
                 viewModel.insertCategory(Category(catID.toLong(), true, categoryName, categoryAmount))
             }
             view?.hideKeyboard()
@@ -87,6 +89,10 @@ class ExpenseScreenFragment : Fragment() {
     fun View.hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
+    }
+
+    fun onMethodCallback(catID: Category) {
+        viewModel.deleteCategories(catID)
     }
 
 
