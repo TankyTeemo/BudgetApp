@@ -51,8 +51,20 @@ class BudgetRepository(app: Application) {
         AsyncDeleteBudget(budgetDao).execute(budget)
     }
 
-    fun deleteExpenditure(expediture: Expenditure){
-        AsyncDeleteExpenditure(expenditureDao).execute(expediture)
+    fun deleteExpenditure(expenditure: Expenditure){
+        AsyncDeleteExpenditure(expenditureDao).execute(expenditure)
+    }
+
+    fun updateCategory(category: Category){
+        AsyncUpdateCategory(categoryDao).execute(category)
+    }
+
+    fun updateBudget(budget: Budget){
+        AsyncUpdateBudget(budgetDao).execute(budget)
+    }
+
+    fun updateExpenditure(expediture: Expenditure){
+        AsyncUpdateExpenditure(expenditureDao).execute(expediture)
     }
 
     fun insertBudget(budget: Budget){
