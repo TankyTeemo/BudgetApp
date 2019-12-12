@@ -10,10 +10,10 @@ interface BudgetDao {
     fun insertBudget(vararg budget: Budget?)
 
     @Update
-    fun updateBudget(budget: Budget?)
+    fun updateBudget(vararg budget: Budget?)
 
     @Delete
-    fun deleteBudget(budget: Budget?)
+    fun deleteBudget(vararg budget: Budget?)
 
     @Query("SELECT * FROM budget WHERE uid = :key")
     fun getBudget(key: Long): Budget

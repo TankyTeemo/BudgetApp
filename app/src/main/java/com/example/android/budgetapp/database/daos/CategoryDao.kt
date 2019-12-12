@@ -10,13 +10,13 @@ interface CategoryDao {
     fun insertCategory(vararg category: Category?)
 
     @Update
-    fun updateCategory(category: Category)
+    fun updateCategory(vararg category: Category?)
 
     @Query("SELECT * from category WHERE uid = :key")
     fun getCategory(key: Long): Category?
 
     @Delete
-    fun deleteCategory(category: Category)
+    fun deleteCategory(vararg category: Category?)
 
     @Query("DELETE FROM category")
     fun clear()

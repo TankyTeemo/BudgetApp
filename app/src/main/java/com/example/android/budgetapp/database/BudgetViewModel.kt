@@ -36,4 +36,16 @@ class BudgetViewModel(app: Application): AndroidViewModel(app) {
     fun insertExpenditure(exp: Expenditure){
         repository.insertExpenditure(exp)
     }
+
+    fun deleteCategories(cat: Category) {
+        repository.deleteCategory(cat)
+    }
+
+    fun deleteExpenditures(exp: Expenditure){
+        repository.deleteExpenditure(exp)
+    }
+
+    fun deleteBudgets(budget: Budget){
+        repository.deleteBudget(budget)
+    }
 }

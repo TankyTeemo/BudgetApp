@@ -24,6 +24,7 @@ import com.example.android.budgetapp.database.BudgetViewModel
 import com.example.android.budgetapp.database.daos.CategoryDao
 import com.example.android.budgetapp.database.entities.Category
 import com.example.android.budgetapp.databinding.FragmentExpenseScreenBinding
+import kotlinx.android.synthetic.main.categories_row.view.*
 
 
 class ExpenseScreenFragment : Fragment() {
@@ -38,9 +39,9 @@ class ExpenseScreenFragment : Fragment() {
         val binding: FragmentExpenseScreenBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_expense_screen, container, false)
 
-        var recyclerAdapter: CategoriesAdapter = CategoriesAdapter()
+        var recyclerAdapter = CategoriesAdapter()
 
-        var catID = 0;
+        var catID = 0
 
         (activity as AppCompatActivity).supportActionBar?.title = "Manage Categories"
 
@@ -72,10 +73,13 @@ class ExpenseScreenFragment : Fragment() {
             if (!categoryName.matches("".toRegex()) && categoryAmount != null) {
                 viewModel.insertCategory(Category(catID.toLong(), true, categoryName, categoryAmount))
             }
-
             view?.hideKeyboard()
         }
 
+//        //delete categories from database
+//        binding.expenseRecyclerView.delete_category.setOnClickListener{
+//            viewModel.
+//        }
         return binding.root
     }
 

@@ -43,6 +43,18 @@ class BudgetRepository(app: Application) {
         return expenditureData
     }
 
+    fun deleteCategory(category: Category){
+        AsyncDeleteCategory(categoryDao).execute(category)
+    }
+
+    fun deleteBudget(budget: Budget){
+        AsyncDeleteBudget(budgetDao).execute(budget)
+    }
+
+    fun deleteExpenditure(expediture: Expenditure){
+        AsyncDeleteExpenditure(expenditureDao).execute(expediture)
+    }
+
     fun insertBudget(budget: Budget){
         AsyncInsertBudget(budgetDao).execute(budget)
     }
@@ -61,15 +73,51 @@ class BudgetRepository(app: Application) {
         }
     }
 
+    class AsyncDeleteBudget(private val budgetDao: BudgetDao): AsyncTask<Budget, Void, Unit>(){
+        override fun doInBackground(vararg budget: Budget?) {
+            budgetDao.deleteBudget(*budget)
+        }
+    }
+
+    class AsyncUpdateBudget(private val budgetDao: BudgetDao): AsyncTask<Budget, Void, Unit>(){
+        override fun doInBackground(vararg budget: Budget?) {
+            budgetDao.updateBudget(*budget)
+        }
+    }
+
     class AsyncInsertExpenditure(private val expenditureDao: ExpenditureDao): AsyncTask<Expenditure, Void, Unit>(){
         override fun doInBackground(vararg expenditure: Expenditure?) {
             expenditureDao.insertExpenditure(*expenditure)
         }
     }
 
+    class AsyncDeleteExpenditure(private val expenditureDao: ExpenditureDao): AsyncTask<Expenditure, Void, Unit>(){
+        override fun doInBackground(vararg expenditure: Expenditure?) {
+            expenditureDao.deleteExpenditure(*expenditure)
+        }
+    }
+
+    class AsyncUpdateExpenditure(private val expenditureDao: ExpenditureDao): AsyncTask<Expenditure, Void, Unit>(){
+        override fun doInBackground(vararg expenditure: Expenditure?) {
+            expenditureDao.updateExpenditure(*expenditure)
+        }
+    }
+
     class AsyncInsertCategory(private val categoryDao: CategoryDao): AsyncTask<Category, Void, Unit>(){
         override fun doInBackground(vararg category: Category?) {
             categoryDao.insertCategory(*category)
+        }
+    }
+
+    class AsyncDeleteCategory(private val categoryDao: CategoryDao): AsyncTask<Category, Void, Unit>(){
+        override fun doInBackground(vararg category: Category?) {
+            categoryDao.deleteCategory(*category)
+        }
+    }
+
+    class AsyncUpdateCategory(private val categoryDao: CategoryDao): AsyncTask<Category, Void, Unit>(){
+        override fun doInBackground(vararg category: Category?) {
+            categoryDao.updateCategory(*category)
         }
     }
 
