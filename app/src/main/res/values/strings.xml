@@ -10,7 +10,7 @@
     <string name="edit_button_text">Edit</string>
     <string name="delete_button_text">Delete</string>
     <string name="back_button_text">Back</string>
-    <string name="frag_pie_string">Graph View</string>
+    <string name="frag_pie_string">Budget Pie Graph</string>
     <string name="back_string">Back</string>
     <string name="doller_sign">$</string>
     <string name="category">Category</string>

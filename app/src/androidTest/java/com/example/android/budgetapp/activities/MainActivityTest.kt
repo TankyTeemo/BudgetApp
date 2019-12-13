@@ -11,6 +11,8 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.example.android.budgetapp.R
+import com.example.android.budgetapp.fragments.PieGraphFragment
+import com.github.mikephil.charting.charts.PieChart
 import kotlinx.android.synthetic.main.fragment_calendar_screen.view.*
 import org.junit.After
 import org.junit.Assert.*
@@ -64,6 +66,7 @@ class MainActivityTest {
 
     @Test
     fun pieChartGetsCategories(){
-
+        onView(withId(R.id.graph_button)).perform(click())
+        onView(withId(R.id.bool_text)).check(matches(withText("true")))
     }
 }
