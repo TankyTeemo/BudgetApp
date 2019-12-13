@@ -69,17 +69,17 @@ class PieGraphFragment : Fragment() {
 
         categoryList = viewModel.getCategories()
 
-        viewModel.getExpenditures().observe(this, object: Observer<List<Expenditure>> {
-            override fun onChanged(t: List<Expenditure>?) {
-                Log.i("tags", "Expenditure" + viewModel.getExpenditures().value.toString())
-                if(t!=null) {
-                    Log.i("tags", "Expenditure bool" + viewModel.getExpenditures().value.toString())
-                    expenditureList = viewModel.getExpenditures()
-                }
-            }
-        })
-
-        expenditureList = viewModel.getExpenditures()
+//        viewModel.getExpenditures().observe(this, object: Observer<List<Expenditure>> {
+//            override fun onChanged(t: List<Expenditure>?) {
+//                Log.i("tags", "Expenditure" + viewModel.getExpenditures().value.toString())
+//                if(t!=null) {
+//                    Log.i("tags", "Expenditure bool" + viewModel.getExpenditures().value.toString())
+//                    expenditureList = viewModel.getExpenditures()
+//                }
+//            }
+//        })
+//
+//        expenditureList = viewModel.getExpenditures()
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_pie_graph, container, false)
         binding.boolText.text = "false"
@@ -133,7 +133,7 @@ class PieGraphFragment : Fragment() {
 //            }
           //  Log.i("tags", categoryL.value?.size.toString())
 
-            
+
             for (i in 0 until categoryL.value!!.size) {                         //length of categories
                 val entryFloat = categoryL.value?.get(i)?.type
                 val categoryString = categoryL.value?.get(i)?.title
