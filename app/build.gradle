@@ -29,7 +29,7 @@ android {
 }
 
 repositories {
-    maven { url 'https://jitpack.io'}
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -48,6 +48,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation('com.schibsted.spain:barista:3.2.0') {
+        exclude group: 'org.jetbrains.kotlin' // Only if you already use Kotlin in your project
+    }
 
     //Room dependencies
     def room_version = "2.2.0"
@@ -63,4 +66,7 @@ dependencies {
 
     //Databinding dependency
     kapt 'com.android.databinding:compiler:3.5.0'
+
+    //Calender dependency
+    implementation 'com.github.sundeepk:compact-calendar-view:3.0.0'
 }

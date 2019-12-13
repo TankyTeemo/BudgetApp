@@ -10,18 +10,18 @@ interface CategoryDao {
     fun insertCategory(vararg category: Category?)
 
     @Update
-    fun updateCategory(category: Category)
+    fun updateCategory(vararg category: Category?)
 
     @Query("SELECT * from category WHERE uid = :key")
     fun getCategory(key: Long): Category?
 
     @Delete
-    fun deleteCategory(category: Category)
+    fun deleteCategory(vararg category: Category?)
 
     @Query("DELETE FROM category")
     fun clear()
 
-    @Query("SELECT * FROM category ORDER BY uid DESC")
+    @Query("SELECT * FROM category")
     fun getAllCategories(): LiveData<List<Category>>
 
     @Query("SELECT * FROM category WHERE active = :key")

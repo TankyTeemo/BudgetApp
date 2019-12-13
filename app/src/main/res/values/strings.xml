@@ -13,4 +13,6 @@
     <string name="frag_pie_string">Graph View</string>
     <string name="back_string">Back</string>
     <string name="doller_sign">$</string>
+    <string name="category">Category</string>
+    <string name="description">Description</string>
 </resources>

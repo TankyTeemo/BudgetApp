@@ -7,7 +7,7 @@ import java.util.*
 data class Category (
     @PrimaryKey val uid: Long,
     @ColumnInfo
-    val active: Boolean?,
+    var active: Boolean?,
     @ColumnInfo
     val title: String?,
     @ColumnInfo

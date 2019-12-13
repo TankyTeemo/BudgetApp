@@ -36,6 +36,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <EditText
+            android:imeOptions="actionDone"
             android:selectAllOnFocus="true"
             android:id="@+id/catagory_name"
             android:layout_width="wrap_content"
@@ -54,6 +55,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <EditText
+            android:imeOptions="actionDone"
             android:selectAllOnFocus="true"
             android:id="@+id/category_amount"
             android:layout_width="wrap_content"
@@ -74,7 +76,7 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/scrollview_height"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/amount_width"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -89,41 +91,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/category_list"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/expense_recycler_view"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="match_parent" />
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
-
-        <Button
-            android:id="@+id/edit_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:text="@string/edit_button_text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/delete_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:text="@string/delete_button_text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/edit_button"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/doller"
