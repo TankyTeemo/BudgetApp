@@ -14,15 +14,6 @@ import com.example.android.budgetapp.database.BudgetViewModel
 import com.example.android.budgetapp.database.entities.Category
 import com.example.android.budgetapp.fragments.CategoriesAdapter.AdapterCallback
 
-
-
-
-
-
-
-
-
-
 class CategoriesAdapter(): RecyclerView.Adapter<CategoriesAdapter.CatHolder>() {
 
     var catID = 0.toLong()
