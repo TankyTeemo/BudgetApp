@@ -161,7 +161,7 @@ class PieGraphFragment : Fragment() {
         myData.setValueFormatter(PercentFormatter())
 
         binding.pieChart.data = myData
-        binding.pieChart.description.text = "HI"
+        binding.pieChart.description.text = ""
         binding.pieChart.isDrawHoleEnabled= false
         binding.pieChart.setUsePercentValues(false)
         binding.pieChart.setEntryLabelColor(Color.BLACK)
