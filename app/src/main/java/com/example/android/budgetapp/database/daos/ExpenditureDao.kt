@@ -11,10 +11,10 @@ interface ExpenditureDao {
     fun insertExpenditure(vararg expenditure: Expenditure?)
 
     @Delete
-    fun deleteExpenditure(expenditure: Expenditure)
+    fun deleteExpenditure(vararg expenditure: Expenditure?)
 
     @Update
-    fun updateExpenditure(expenditure: Expenditure)
+    fun updateExpenditure(vararg expenditure: Expenditure?)
 
     @Query("SELECT * FROM expenditure WHERE uid = :key")
     fun getExpenditure(key: Long): Expenditure?

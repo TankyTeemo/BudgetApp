@@ -6,6 +6,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.example.android.budgetapp.database.daos.BudgetDao
 import com.example.android.budgetapp.database.daos.CategoryDao
 import com.example.android.budgetapp.database.daos.ExpenditureDao
+import com.example.android.budgetapp.database.entities.Budget
 import com.example.android.budgetapp.database.entities.Category
 import com.example.android.budgetapp.database.entities.Expenditure
 import org.junit.After
@@ -16,6 +17,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.IOException
 import java.lang.Exception
+import java.util.*
 
 @RunWith(AndroidJUnit4::class)
 class BudgetDatabaseTest {
@@ -57,7 +59,8 @@ class BudgetDatabaseTest {
     @Test
     @Throws(Exception::class)
     fun clearCategoryTable() {
-        val category = Category(uid = 1,active = true,title = "Test",type = 0)
+        val category = Category(uid = 1,active = true,title = "Test2" +
+                "",type = 0)
         categoryDao.insertCategory(category)
         categoryDao.clear()
         val checkCategory = categoryDao.getCategory(1)
@@ -69,7 +72,7 @@ class BudgetDatabaseTest {
     fun insertAndGetExpenditure() {
         val category = Category(uid = 1,active = true,title = "Test",type = 0)
         categoryDao.insertCategory(category)
-        val expenditure = Expenditure(uid = 1,category_uid = 1,date = "test",price = 10.0,description = "Test",recurrence = 1)
+        val expenditure = Expenditure(uid = 1,category_uid = 1,date = Date(),price = 10.0,description = "Test",recurrence = 1)
         expenditureDao.insertExpenditure(expenditure)
         val checkExpenditure = expenditureDao.getExpenditure(1)
         assertEquals(checkExpenditure?.category_uid, 1.toLong())
@@ -79,5 +82,17 @@ class BudgetDatabaseTest {
     @Throws(Exception::class)
     fun getAllExpenditureOfACategory() {
 
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun deleteBudget() {
+        val category = Category(uid = 1,active = true,title = "Test",type = 0)
+        categoryDao.insertCategory(category)
+        val budget = Budget(uid = 1, amount = 20.00, date = Date(124),category_uid = 1 )
+        budgetDao.insertBudget(budget)
+        budgetDao.deleteBudget(budget)
+        var check = budgetDao.getBudget(1)
+        assertEquals(check?.uid, null)
     }
 }

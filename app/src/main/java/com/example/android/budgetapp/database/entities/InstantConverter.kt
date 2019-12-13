@@ -6,7 +6,7 @@ import java.util.*
 class DateConverter {
     @TypeConverter
     fun DateToLong(date: Date): Long? {
-        return date?.time
+        return date.time
     }
 
     @TypeConverter

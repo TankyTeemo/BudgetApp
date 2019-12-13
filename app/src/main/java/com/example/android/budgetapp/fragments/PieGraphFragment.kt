@@ -28,7 +28,7 @@ import java.lang.NullPointerException
 import kotlin.collections.ArrayList
 
 /**
- * A simple [Fragment] subclass.
+ * The pie fragment that shows the categories in a different way
  */
 class PieGraphFragment : Fragment() {
 
