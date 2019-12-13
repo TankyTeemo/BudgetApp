@@ -43,8 +43,8 @@ class CalendarScreenFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(BudgetViewModel::class.java)
 
-        var expID = 0;
-        var catAmount = 0;
+        var expID = 0
+        var catAmount = 0
         spinner = binding.spinner
 
         viewModel.getExpenditures().observe(this,object: Observer<List<Expenditure>> {
@@ -81,7 +81,6 @@ class CalendarScreenFragment : Fragment() {
 //        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 //
 //        spinner!!.setAdapter(aa)
-
 
 
         binding.expenseScreenButton.setOnClickListener { v: View ->

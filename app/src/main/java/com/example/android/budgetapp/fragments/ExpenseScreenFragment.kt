@@ -68,7 +68,7 @@ class ExpenseScreenFragment : Fragment() {
             }
         })
 
-        //Adds categories to database
+        // Adds categories to database
         binding.submitButton.setOnClickListener {
             if (!binding.catagoryName.text.toString().matches("".toRegex()) && !binding.categoryAmount.text.toString().matches("".toRegex())) {
                 var categoryName = binding.catagoryName.text.toString()
@@ -77,14 +77,8 @@ class ExpenseScreenFragment : Fragment() {
             }
             view?.hideKeyboard()
         }
-
-//        //delete categories from database
-//        binding.expenseRecyclerView.delete_category.setOnClickListener{
-//            viewModel.
-//        }
         return binding.root
     }
-
 
     fun View.hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

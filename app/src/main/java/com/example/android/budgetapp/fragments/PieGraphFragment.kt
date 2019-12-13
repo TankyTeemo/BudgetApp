@@ -20,7 +20,7 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
 
 /**
- * A simple [Fragment] subclass.
+ * The pie fragment that shows the categories in a different way
  */
 class PieGraphFragment : Fragment() {
 
